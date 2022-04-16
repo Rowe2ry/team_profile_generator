@@ -113,5 +113,6 @@ describe('Employee Class', () => {
             const result = whatDoYouDo.getRole();
 
             expect(result).toEqual(empRole);
+        });
     });
 });
