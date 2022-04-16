@@ -73,18 +73,45 @@ describe('Employee Class', () => {
     });
     
     describe('getName method', () => {
-    
+        it('should return the name property of the employee', () => {
+            const sayMyName = new Employee ('Beyonce', 1999, 'queenBee@destinyschild.com');
+            const empName = sayMyName.name;
+
+            const result = sayMyName.getName();
+
+            expect(result).toEqual(empName);
+        });
     });
     
     describe('getId method', () => {
-        
+        it('should return the ID property of the employee', () => {
+            const immaNeedtoSeeId = new Employee ('OverTwentyOne', 22, 'beerlover@wantstodrink.org');
+            const empId = immaNeedtoSeeId.id;
+
+            const result = immaNeedtoSeeId.getId();
+
+            expect(result).toEqual(empId);
+        });
     });
     
     describe('getEmail method', () => {
-        
+        it('should return the email property of the employee', () => {
+            const weveBeenTryingTo = new Employee ('CarsExtendedWarranty', 3, 'definitelynotascam@youcantrustus.com');
+            const empEmail = weveBeenTryingTo.email;
+
+            const result = weveBeenTryingTo.getEmail();
+
+            expect(result).toEqual(empEmail);
+        });
     });
     
     describe('getRole method', () => {
-        
+        it('should return the role of Employee', () => {
+            const whatDoYouDo = new Employee ('Tom Smykowski', 12, 'TSmykowski@Initech.com');
+            const empRole = 'Employee';
+
+            const result = whatDoYouDo.getRole();
+
+            expect(result).toEqual(empRole);
     });
 });
