@@ -1,4 +1,4 @@
-const Manager = require('../lib/manager');
+const Manager = require('../lib/Manager');
 
 describe('Manager Sub Class', () => {
     describe('Initialization', () => {
@@ -23,12 +23,14 @@ describe('Manager Sub Class', () => {
 
     describe('manager methods', () => {
         describe('getRole method', () => {
-            const doYouManage = new Manager ('Tom Smykowski', 12, 'TSmykowski@Initech.com', 15);
-            const manageRole = 'Manager';
+            it('should return the roll of \"Manager\" instead of \"Employee\"', () => {
+                const doYouManage = new Manager ('Tom Smykowski', 12, 'tsmykowski@Initech.com', 15);
+                const manageRole = 'Manager';
 
-            const result = doYouManage.getRole();
+                const result = doYouManage.getRole();
 
-            expect(result).toEqual(manageRole);
+                expect(result).toEqual(manageRole);
+            });
         });
     });
 });

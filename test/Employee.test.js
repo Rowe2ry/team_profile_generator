@@ -58,7 +58,7 @@ describe('Employee Class', () => {
         });
 
         it('throws and error if the email argument is missing', () => {
-            const noEmailError = 'Employee Email should exist and be a string';
+            const noEmailError = ' in a valid email format with no spaces.';
 
             const noContact = () => new Employee('Henry',8,undefined);
 
@@ -66,11 +66,27 @@ describe('Employee Class', () => {
         });
 
         it('throws and error if the email argument is not a string', () => {
-            const booleanEmailError = 'Employee Email should exist and be a string';
+            const booleanEmailError = ' in a valid email format with no spaces.';
 
             const emailTrue = () => new Employee('realHuman', 1, true);
 
             expect(emailTrue).toThrowError(booleanEmailError);
+        });
+
+        it('recognizes that the email should contain an @ character', () => {
+            const noAtEmailError = ' in a valid email format with no spaces.';
+
+            const whereYouAt = () => new Employee('Exists', 999, 'email.com');
+
+            expect(whereYouAt).toThrowError(noAtEmailError);
+        });
+
+        it('recognizes that the email should NOT contain a space', () => {
+            const spaceyEmailError = ' in a valid email format with no spaces.';
+
+            const giveThemSomeSpace = () => new Employee('Space', 20, 'email address@example.com');
+
+            expect(giveThemSomeSpace).toThrowError(spaceyEmailError);
         });
     });
     describe('employee methods', () => {
