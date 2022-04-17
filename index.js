@@ -6,7 +6,7 @@ const Employee = require('./lib/Employee'); // class constructor
 const Manager = require('./lib/Manager'); // sub-class constructor for Employee class
 const Engineer = require('./lib/Engineer'); // sub-class constructor for Employee class
 const Intern = require('./lib/Intern'); // sub-class constructor for Employee class
-const writeHTML = require('.lib/writeHTML'); // wil make our Team Profile page
+// const writeHTML = require('.lib/writeHTML'); // wil make our Team Profile page
 const inquirer = require('inquirer'); // used for prompting user through the command line
 const fs = require('fs'); // file system
 
@@ -67,8 +67,8 @@ const internQuestion = [
 const loopQuestion = [ // start the questions over for each new employee
     {
         type: 'confirm',
-        name: 'do you have another employee to enter into the system?',
-        message: 'What is this manager\'s office number?' 
+        name: 'again',
+        message: 'do you have another employee to enter into the system?' 
     },
 ];
 
@@ -90,8 +90,8 @@ function enterEmployee() {
         // role requires creation of a new object type in a subclass of Employee
         switch (res.empRole) {
             case 'Employee': // no sub classes needed, create the object and move one
-                eval(`const employee${currentEmployee} = new Employee(${res.empName}, ${res.empID}, ${res.empEmail})`);
-                teamArr.pop(eval(`employee${currentEmployee}`)); // add this employee object to the team array
+                const employee = new Employee(res.empName, Number(res.empId), res.empEmail);
+                teamArr.push(employee); // add this employee object to the team array
                 anotherEmployee();
                 break;
             case 'Manager': // gather info needed ot create "Manager" s.c
@@ -110,11 +110,11 @@ function enterEmployee() {
 function anotherEmployee() {
     inquirer.prompt([...loopQuestion])
     .then((boolean) => {
-        if (!boolean) { // if false then...
+        if (!boolean.again) { // if false then...
             console.log(teamArr);
             // writeHTML(teamArr); // no more team members, write the HTML
         } else { // must need to add more team members....
-        curentEmployee++; // increase employee index
+        currentEmployee++; // increase employee index
         enterEmployee(); // start the process of employee entry over again
         };
     });
@@ -123,8 +123,8 @@ function anotherEmployee() {
 function managerPrompts(prev) { // for a manager
     inquirer.prompt([...managerQuestion]) // ask about the office number
     .then((res) => {
-        eval(`const employee${currentEmployee} = new Manager(${prev.empName}, ${prev.empID}, ${prev.empEmail}, ${res.manageOfficeNum})`); //create the object
-        teamArr.pop(eval(`employee${currentEmployee}`)); // store in the team array
+        const employee = new Manager(prev.empName, Number(prev.empId), prev.empEmail, Number(res.manageOfficeNum)); //create the object
+        teamArr.push(employee); // store in the team array
         anotherEmployee(); // ask if finished
     });
 };
@@ -132,8 +132,8 @@ function managerPrompts(prev) { // for a manager
 function engineerPrompts(prev) { // for an engineer
     inquirer.prompt([...engineerQuestion]) // ask about their github
     .then((res) => {
-        eval(`const employee${currentEmployee} = new Engineer(${prev.empName}, ${prev.empID}, ${prev.empEmail}, ${res.engineerGithub})`); // create the object
-        teamArr.pop(eval(`employee${currentEmployee}`)); // store in the team array
+        const employee = new Engineer(prev.empName, Number(prev.empId), prev.empEmail, res.engineerGithub); // create the object
+        teamArr.push(employee); // store in the team array
         anotherEmployee(); // ask if finished
     });
 };
@@ -141,8 +141,8 @@ function engineerPrompts(prev) { // for an engineer
 function internPrompts(prev) { // for an Intern
     inquirer.prompt([...internQuestion]) // ask about their school
     .then((res) => {
-        eval(`const employee${currentEmployee} = new Intern(${prev.empName}, ${prev.empID}, ${prev.empEmail}, ${res.internSchool})`); // create the object
-        teamArr.pop(eval(`employee${currentEmployee}`)); // store in team array
+        const employee = new Intern(prev.empName, Number(prev.empId), prev.empEmail, res.internSchool); // create the object
+        teamArr.push(employee); // store in the team array
         anotherEmployee(); // ask if finished
     });
 };
