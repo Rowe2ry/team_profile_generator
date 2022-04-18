@@ -1,20 +1,14 @@
-/*
-font-family: 'Playfair Display', serif;
-font-family: 'Roboto', sans-serif;
-*/
 
-:root {
-    --clr-primary: #333;
-    --clr-secondary: #4a4a4a;
-    --clr-tertiary: #999;
-    --clr-heading-fonts: #fff;
-    --clr-body-fonts: #000;
-    --clr-accent: #dc0000;
-    font-size: 16px;
-}
-
-
-body {
+    :root {
+        --clr-primary: #333;
+        --clr-secondary: #4a4a4a;
+        --clr-tertiary: #999;
+        --clr-heading-fonts: #fff;
+        --clr-body-fonts: #000;
+        --clr-accent: #ffff00;
+        font-size: 16px;
+    }
+    body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
@@ -141,3 +135,4 @@ h1 {
         padding: .4em;
     }
 }
+    

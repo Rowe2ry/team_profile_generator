@@ -147,7 +147,7 @@ const appStart = () => { // the main menu is slightly different on the first loa
                 newProject();
                 break;
             case 'Choose appearance options for output page': // asks new questions to choose some color & appearance options
-                changeAppearance();
+                changeAppearanceInit();
                 break;
             case 'Exit & generate profile page.': // stop asking questions and make the team page
                 console.log('You did not enter any information, so a page was not generated.');
@@ -170,11 +170,12 @@ const goToMainMenu = () => { // regular main menu
                 newTeamMember();
                 break;
             case 'Choose appearance options for output page': // asks new questions to choose some color & appearance options
-                changeAppearance(res);
+                changeAppearance();
                 break;
             case 'Exit & generate profile page.': // stop asking questions and make the team page
                 console.log([theme, accentColor, teamArr]);
-                writeCSS(teamArr[0].name[0], theme, accentColor);
+                const firstName = teamArr[0].name.trim().split(' ');
+                writeCSS(firstName[0], theme, accentColor);
                 writeHTML(teamArr);
                 //process.exit();
                 break;
@@ -238,6 +239,17 @@ const changeAppearance = () => {
         theme = res.theme;
         accentColor = res.color;
         goToMainMenu(); // return to the main menu
+    });
+};
+
+const changeAppearanceInit = () => { // if they come to this page to pick settings before starting to build the team
+    inquirer.prompt([...appearanceMenu])
+    .then((res) => {
+        // use prompt responses to create new object of the type:
+        // "Manager" sib-class of the class "employee"
+        theme = res.theme;
+        accentColor = res.color;
+        appStart(); // return to the main menu (initial version that still prompts to build a team)
     });
 };
 
