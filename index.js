@@ -6,7 +6,7 @@ const Employee = require('./lib/Employee'); // class constructor
 const Manager = require('./lib/Manager'); // sub-class constructor for Employee class
 const Engineer = require('./lib/Engineer'); // sub-class constructor for Employee class
 const Intern = require('./lib/Intern'); // sub-class constructor for Employee class
-// const writeHTML = require('.lib/writeHTML'); // wil make our Team Profile page
+// const writeHTML = require('./lib/writeHTML'); // wil make our Team Profile page
 const inquirer = require('inquirer'); // used for prompting user through the command line
 const fs = require('fs'); // file system
 
