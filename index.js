@@ -7,6 +7,7 @@ const Manager = require('./lib/Manager'); // sub-class constructor for Employee 
 const Engineer = require('./lib/Engineer'); // sub-class constructor for Employee class
 const Intern = require('./lib/Intern'); // sub-class constructor for Employee class
 const writeHTML = require('./lib/writeHTML'); // wil make our Team Profile page
+const writeCSS = require('./lib/writeCSS'); // I wanted to add dynamic styling
 const inquirer = require('inquirer'); // used for prompting user through the command line
 const fs = require('fs'); // file system
 
@@ -149,10 +150,8 @@ const appStart = () => { // the main menu is slightly different on the first loa
                 changeAppearance();
                 break;
             case 'Exit & generate profile page.': // stop asking questions and make the team page
-                console.log([theme, accentColor, teamArr]);
-                // writeCSS(theme, accentColor);
-                writeHTML(teamArr);
-                //process.exit();
+                console.log('You did not enter any information, so a page was not generated.');
+                process.exit();
                 break;
             default: // not sure if possible since user will have multiple choice, but we should know if this event is triggered
                 throw new Error('User submitted invalid command');
@@ -175,7 +174,7 @@ const goToMainMenu = () => { // regular main menu
                 break;
             case 'Exit & generate profile page.': // stop asking questions and make the team page
                 console.log([theme, accentColor, teamArr]);
-                // writeCSS(theme, accentColor);
+                writeCSS(teamArr[0].name[0], theme, accentColor);
                 writeHTML(teamArr);
                 //process.exit();
                 break;
