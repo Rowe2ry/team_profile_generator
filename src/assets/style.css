@@ -64,7 +64,7 @@ h1 {
 
 .nav__item,
 .nav__item a {
-    color: #fff;
+    color: var(--clr-heading-fonts);
     font-weight: 700;
     margin: 0 .3125em;
     text-transform: uppercase;
