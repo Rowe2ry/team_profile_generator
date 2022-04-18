@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/style.css">
     <title>My Team</title>
 </head>
 <body>
     <header>
         <div class="container row">
-            <nav class="flex flex__r flex__wrap">
+            <nav class="flex align__i-center justif-sb header-footer">
                 <div class="heading">
                     <h1>Meet The Team</h1>
                 </div>
-                <ul class="nav__list">
+                <ul id ="navlist" class="nav__list">
                     <li class="nav__item"><a href="#">Home</a></li>
                     <li class="nav__item"><a href="#">About Us</a></li>
                     <li class="nav__item"><a href="#">Contact</a></li>
@@ -26,26 +26,67 @@
         </div>
     </header>
 
+    <div class="decorative"></div>
+
     <main>
         <div class="container row flex flex__r flex__wrap">
             <article class="card">
                 <section class="employee__title">
                     <h2>
-
+                        Michael Meeks
                     </h2>
                     <h3>
-
+                        Manager
                     </h3>
                 </section>
+                <div class="decorative"></div>
                 <section class="employee__details">
                     <ul class="employee__attributes">
-                        <li class="attribute"><a href=""></a></li>
-                        <li class="attribute"><a href=""></a></li>
-                        <li class="attribute"><a href=""></a></li>
+                        <li class="attribute">ID: 56</li>
+                        <li class="attribute">Email: <a href="mmeeks@salesforce.com">mmeeks@salesforce.com</a></li>
+                        <li class="attribute">Office Number: 243</li>
+                    </ul>
+                </section>
+            </article>
+            <article class="card">
+                <section class="employee__title">
+                    <h2>
+                        Andrew Ausley
+                    </h2>
+                    <h3>
+                        Engineer
+                    </h3>
+                </section>
+                <div class="decorative"></div>
+                <section class="employee__details">
+                    <ul class="employee__attributes">
+                        <li class="attribute">ID: 28</li>
+                        <li class="attribute">Email: <a href="mailto:aausley@sneakybee.com">aausley@sneakybee.com</a></li>
+                        <li class="attribute">GitHub <a href="https://www.github.com/SneakyBee">SneakyBee</a></li>
+                    </ul>
+                </section>
+            </article>
+            <article class="card">
+                <section class="employee__title">
+                    <h2>
+                        Chris Rowe
+                    </h2>
+                    <h3>
+                        Intern
+                    </h3>
+                </section>
+                <div class="decorative"></div>
+                <section class="employee__details">
+                    <ul class="employee__attributes">
+                        <li class="attribute">ID: 32</li>
+                        <li class="attribute">Email: <a href="mailto:rowe2ry@yahoo.com">rowe2ry@yahoo.com</a></li>
+                        <li class="attribute">School: Georgia Tech</li>
                     </ul>
                 </section>
             </article>
         </div>
     </main>
+
+    
 </body>
 </html>
