@@ -29,7 +29,7 @@ const mainMenuInitial = [
     },
 ];
 
-const changeAppearance = [
+const appearanceMenu = [
     {
         type: 'list',
         name: 'theme',
@@ -108,7 +108,7 @@ const internQuestions = [
     },
     {
         type: 'input',
-        name: 'github',
+        name: 'school',
         message: 'What school is this intern attending?' 
     },
 ];
@@ -117,7 +117,7 @@ const mainMenu = [
     {
         type: 'list',
         name: 'menu',
-        message: 'Welcome to Team Profile Page Generator V1.0.0! What would you like to do?',
+        message: 'Your new team page construction is underway. What would you like to do next?',
         choices: ['Add another Team Member', 'Choose appearance options for output page', 'Exit & Generated profile page.']
     },
 ];
@@ -228,7 +228,7 @@ const newIntern = () => { // start with asking about the manager of the team
 };
 
 const changeAppearance = () => {
-    inquirer.prompt([...changeAppearance])
+    inquirer.prompt([...appearanceMenu])
     .then((res) => {
         // use prompt responses to create new object of the type:
         // "Manager" sib-class of the class "employee"
