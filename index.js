@@ -25,7 +25,7 @@ const mainMenuInitial = [
         type: 'list',
         name: 'menu',
         message: 'Welcome to Team Profile Page Generator V1.0.0! What would you like to do?',
-        choices: ['Build New Team', 'Choose appearance options for output page', 'Exit & Generated profile page.']
+        choices: ['Build New Team', 'Choose appearance options for output page', 'Exit & generate profile page.']
     },
 ];
 
@@ -118,7 +118,7 @@ const mainMenu = [
         type: 'list',
         name: 'menu',
         message: 'Your new team page construction is underway. What would you like to do next?',
-        choices: ['Add another Team Member', 'Choose appearance options for output page', 'Exit & Generated profile page.']
+        choices: ['Add another team member', 'Choose appearance options for output page', 'Exit & generate profile page.']
     },
 ];
 
@@ -148,7 +148,7 @@ const appStart = () => { // the main menu is slightly different on the first loa
             case 'Choose appearance options for output page': // asks new questions to choose some color & appearance options
                 changeAppearance();
                 break;
-            case 'Exit & Generated profile page.': // stop asking questions and make the team page
+            case 'Exit & generate profile page.': // stop asking questions and make the team page
                 console.log([theme, accentColor, teamArr]);
                 // writeCSS(theme, accentColor);
                 writeHTML(teamArr);
@@ -167,13 +167,13 @@ const goToMainMenu = () => { // regular main menu
 
         // switch statement launches conditional logic execution for the menu interaction
         switch (res.menu) {
-            case 'Add another Team Member': // begins process of adding either an "Engineer" or "Intern" to the team array
+            case 'Add another team member': // begins process of adding either an "Engineer" or "Intern" to the team array
                 newTeamMember();
                 break;
             case 'Choose appearance options for output page': // asks new questions to choose some color & appearance options
                 changeAppearance(res);
                 break;
-            case 'Exit & Generated profile page.': // stop asking questions and make the team page
+            case 'Exit & generate profile page.': // stop asking questions and make the team page
                 console.log([theme, accentColor, teamArr]);
                 // writeCSS(theme, accentColor);
                 writeHTML(teamArr);
