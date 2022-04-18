@@ -16,8 +16,6 @@ const fs = require('fs'); // file system
 
 const teamArr = []; // team array | stores each team member object
 
-let currentEmployee = 0; // just a number we will use as an index number for CL UI/UX
-
 let theme = 'light';
 
 let accentColor = 'red';
@@ -148,7 +146,7 @@ const appStart = () => { // the main menu is slightly different on the first loa
                 newProject();
                 break;
             case 'Choose appearance options for output page': // asks new questions to choose some color & appearance options
-                changeAppearance(res);
+                changeAppearance();
                 break;
             case 'Exit & Generated profile page.': // stop asking questions and make the team page
                 console.log([theme, accentColor, teamArr]);
@@ -167,7 +165,7 @@ const goToMainMenu = () => { // regular main menu
 
         // switch statement launches conditional logic execution for the menu interaction
         switch (res.menu) {
-            case 'Add another Team Member': // goes into starting a new project by asking questions about the manager
+            case 'Add another Team Member': // begins process of adding either an "Engineer" or "Intern" to the team array
                 newTeamMember();
                 break;
             case 'Choose appearance options for output page': // asks new questions to choose some color & appearance options
@@ -188,8 +186,54 @@ const newProject = () => { // start with asking about the manager of the team
     .then((res) => {
         // use prompt responses to create new object of the type:
         // "Manager" sib-class of the class "employee"
-        const manager = new Manager(res.name, res.idNum, res.email, res.officeNum);
+        const manager = new Manager(res.name, Number(res.idNum), res.email, Number(res.officeNum));
         teamArr.push(manager); // add new object to the array of team members
+        goToMainMenu(); // return to the main menu
+    });
+};
+
+const newTeamMember = () => { // start with asking about the manager of the team
+    inquirer.prompt([...addTeamMember])
+    .then((res) => {
+        // use prompt responses to create new object of the type:
+        // "Manager" sib-class of the class "employee"
+        if (res.empType === 'Engineer') {
+            newEngineer();
+        } else {
+            newIntern();
+        };
+    });
+};
+
+const newEngineer = () => { // start with asking about the manager of the team
+    inquirer.prompt([...engineerQuestions])
+    .then((res) => {
+        // use prompt responses to create new object of the type:
+        // "Manager" sib-class of the class "employee"
+        const engineer = new Engineer(res.name, Number(res.idNum), res.email, res.github);
+        teamArr.push(engineer); // add new object to the array of team members
+        goToMainMenu(); // return to the main menu
+    });
+};
+
+const newIntern = () => { // start with asking about the manager of the team
+    inquirer.prompt([...internQuestions])
+    .then((res) => {
+        // use prompt responses to create new object of the type:
+        // "Manager" sib-class of the class "employee"
+        const intern = new Intern(res.name, Number(res.idNum), res.email, res.school);
+        teamArr.push(intern); // add new object to the array of team members
+        goToMainMenu(); // return to the main menu
+    });
+};
+
+const changeAppearance = () => {
+    inquirer.prompt([...changeAppearance])
+    .then((res) => {
+        // use prompt responses to create new object of the type:
+        // "Manager" sib-class of the class "employee"
+        theme = res.theme;
+        accentColor = res.color;
         goToMainMenu(); // return to the main menu
     });
 };
@@ -203,5 +247,3 @@ appStart()
 /* =========================================================================
  * Exports
  * ========================================================================= */
-
-//module.exports = ['teamArr'];
