@@ -152,7 +152,7 @@ const appStart = () => { // the main menu is slightly different on the first loa
                 console.log([theme, accentColor, teamArr]);
                 // writeCSS(theme, accentColor);
                 writeHTML(teamArr);
-                process.exit();
+                //process.exit();
                 break;
             default: // not sure if possible since user will have multiple choice, but we should know if this event is triggered
                 throw new Error('User submitted invalid command');
@@ -177,7 +177,7 @@ const goToMainMenu = () => { // regular main menu
                 console.log([theme, accentColor, teamArr]);
                 // writeCSS(theme, accentColor);
                 writeHTML(teamArr);
-                process.exit();
+                //process.exit();
                 break;
             default: // not sure if possible since user will have multiple choice, but we should know if this event is triggered
                 throw new Error('User submitted invalid command');
