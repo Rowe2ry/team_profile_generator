@@ -35,7 +35,8 @@ a:focus-visible {
     opacity: 70%;
 }
 
-header {
+header,
+footer {
     width: 100%;
     background-color: var(--clr-primary);
 }
@@ -121,6 +122,12 @@ h1 {
 .employee__attributes {
     padding: .5em;
     margin: .375em 1em;
+}
+
+.caption {
+    color: var(--clr-heading-fonts);
+    margin: 0 auto;
+    padding: 2em 1em 1em 0;
 }
 
 @media screen and (max-width:700px) {
