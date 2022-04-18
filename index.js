@@ -16,134 +16,181 @@ const fs = require('fs'); // file system
 
 const teamArr = []; // team array | stores each team member object
 
-const baseQuestions = [
+let currentEmployee = 0; // just a number we will use as an index number for CL UI/UX
+
+let theme = 'light';
+
+let accentColor = 'red';
+
+const mainMenuInitial = [
     {
-        type: 'input',
-        name: 'empName',
-        message: 'What is this employee\'s name?' 
+        type: 'list',
+        name: 'menu',
+        message: 'Welcome to Team Profile Page Generator V1.0.0! What would you like to do?',
+        choices: ['Build New Team', 'Choose appearance options for output page', 'Exit & Generated profile page.']
     },
+];
+
+const changeAppearance = [
     {
-        type: 'input',
-        name: 'empId',
-        message: 'What is this employee\'s ID number?' 
-    },
-    {
-        type: 'input',
-        name: 'empEmail',
-        message: 'What is this employee\'s email address?' 
+        type: 'list',
+        name: 'theme',
+        message: 'Light or Dark mode?',
+        choices: ['Light', 'Dark']
     },
     {
         type: 'list',
-        name: 'empRole',
-        message: 'What is this employee\'s role?',
-        choices: ['Employee', 'Manager', 'Engineer', 'Intern']
+        name: 'color',
+        message: 'Choose an accent color for the page:',
+        choices: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Black and White']
+    }
+];
+
+const managerQuestions = [
+    {
+        type: 'input',
+        name: 'name',
+        message: 'What is the team manager\'s name?' 
+    },
+    {
+        type: 'input',
+        name: 'idNum',
+        message: 'What is the team manager\'s id number?' 
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'What is the team manager\'s email address?' 
+    },
+    {
+        type: 'input',
+        name: 'officeNum',
+        message: 'What is the team manager\'s office number?' 
     },
 ];
 
-const managerQuestion = [
+const engineerQuestions = [
     {
         type: 'input',
-        name: 'manageOfficeNum',
-        message: 'What is this manager\'s office number?' 
+        name: 'name',
+        message: 'What is this engineer\'s name?' 
+    },
+    {
+        type: 'input',
+        name: 'idNum',
+        message: 'What is this engineer\'s id number?' 
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'What is this engineer\'s email address?' 
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'What is this engineer\'s github username?' 
     },
 ];
 
-const engineerQuestion = [
+const internQuestions = [
     {
         type: 'input',
-        name: 'engineerGithub',
-        message: 'What is this Engineer\'s GitHub username?' 
+        name: 'name',
+        message: 'What is this inter\'s name?' 
     },
-];
-
-const internQuestion = [
     {
         type: 'input',
-        name: 'internSchool',
+        name: 'idNum',
+        message: 'What is this inter\'s id number?' 
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'What is this intern\'s email address?' 
+    },
+    {
+        type: 'input',
+        name: 'github',
         message: 'What school is this intern attending?' 
     },
 ];
 
-const loopQuestion = [ // start the questions over for each new employee
+const mainMenu = [
     {
-        type: 'confirm',
-        name: 'again',
-        message: 'do you have another employee to enter into the system?' 
+        type: 'list',
+        name: 'menu',
+        message: 'Welcome to Team Profile Page Generator V1.0.0! What would you like to do?',
+        choices: ['Add another Team Member', 'Choose appearance options for output page', 'Exit & Generated profile page.']
     },
 ];
 
-let currentEmployee = 0; // just a number we will add to all of our variable names as an index number
+const addTeamMember = [
+    {
+        type: 'list',
+        name: 'empType',
+        message: 'What is this team member\'s role?',
+        choices: ['Engineer', 'Intern']
+    },
+];
 
 /* =========================================================================
  * function Declarations
  * ========================================================================= */
 
-function enterEmployee() {
-    console.log(`We are going to enter in information for employee number ${currentEmployee + 1}.`); //lets user know whats happening. Adds 1 to index
-    // only for console print since user will probably not want to think of an
-    // employee being "employee 0". Users usually count from 1
-    inquirer.prompt([...baseQuestions]) // ask questions
+const appStart = () => { // the main menu is slightly different on the first load of the application
+    inquirer.prompt([...mainMenuInitial]) // ask questions
     .then((res) => {
         //console.log(res)
 
-        // switch statement launches conditional logic execution if the employee
-        // role requires creation of a new object type in a subclass of Employee
-        switch (res.empRole) {
-            case 'Employee': // no sub classes needed, create the object and move one
-                const employee = new Employee(res.empName, Number(res.empId), res.empEmail);
-                teamArr.push(employee); // add this employee object to the team array
-                anotherEmployee();
+        // switch statement launches conditional logic execution for the menu interaction
+        switch (res.menu) {
+            case 'Build New Team': // goes into starting a new project by asking questions about the manager
+                newProject();
                 break;
-            case 'Manager': // gather info needed ot create "Manager" s.c
-                managerPrompts(res);
+            case 'Choose appearance options for output page': // asks new questions to choose some color & appearance options
+                changeAppearance(res);
                 break;
-            case 'Engineer': // gather info needed ot create "Engineer" s.c
-                engineerPrompts(res);
+            case 'Exit & Generated profile page.': // stop asking questions and make the team page
+                console.log([theme, accentColor, teamArr]);
+                // writeHTML(res);
                 break;
-            case 'Intern': // gather info needed ot create "Intern" s.c
-                internPrompts(res);
-                break;
+            default: // not sure if possible since user will have multiple choice, but we should know if this event is triggered
+                throw new Error('User submitted invalid command');
         };
     });
 };
 
-function anotherEmployee() {
-    inquirer.prompt([...loopQuestion])
-    .then((boolean) => {
-        if (!boolean.again) { // if false then...
-            console.log(teamArr);
-            // writeHTML(teamArr); // no more team members, write the HTML
-        } else { // must need to add more team members....
-        currentEmployee++; // increase employee index
-        enterEmployee(); // start the process of employee entry over again
+const goToMainMenu = () => { // regular main menu
+    inquirer.prompt([...mainMenu]) // ask questions
+    .then((res) => {
+        //console.log(res)
+
+        // switch statement launches conditional logic execution for the menu interaction
+        switch (res.menu) {
+            case 'Add another Team Member': // goes into starting a new project by asking questions about the manager
+                newTeamMember();
+                break;
+            case 'Choose appearance options for output page': // asks new questions to choose some color & appearance options
+                changeAppearance(res);
+                break;
+            case 'Exit & Generated profile page.': // stop asking questions and make the team page
+                console.log([theme, accentColor, teamArr]);
+                // writeHTML(res);
+                break;
+            default: // not sure if possible since user will have multiple choice, but we should know if this event is triggered
+                throw new Error('User submitted invalid command');
         };
     });
 };
 
-function managerPrompts(prev) { // for a manager
-    inquirer.prompt([...managerQuestion]) // ask about the office number
+const newProject = () => { // start with asking about the manager of the team
+    inquirer.prompt([...managerQuestions])
     .then((res) => {
-        const employee = new Manager(prev.empName, Number(prev.empId), prev.empEmail, Number(res.manageOfficeNum)); //create the object
-        teamArr.push(employee); // store in the team array
-        anotherEmployee(); // ask if finished
-    });
-};
-
-function engineerPrompts(prev) { // for an engineer
-    inquirer.prompt([...engineerQuestion]) // ask about their github
-    .then((res) => {
-        const employee = new Engineer(prev.empName, Number(prev.empId), prev.empEmail, res.engineerGithub); // create the object
-        teamArr.push(employee); // store in the team array
-        anotherEmployee(); // ask if finished
-    });
-};
-
-function internPrompts(prev) { // for an Intern
-    inquirer.prompt([...internQuestion]) // ask about their school
-    .then((res) => {
-        const employee = new Intern(prev.empName, Number(prev.empId), prev.empEmail, res.internSchool); // create the object
-        teamArr.push(employee); // store in the team array
-        anotherEmployee(); // ask if finished
+        // use prompt responses to create new object of the type:
+        // "Manager" sib-class of the class "employee"
+        const manager = new Manager(res.name, res.idNum, res.email, res.officeNum);
+        teamArr.push(manager); // add new object to the array of team members
+        goToMainMenu(); // return to the main menu
     });
 };
 
@@ -151,7 +198,7 @@ function internPrompts(prev) { // for an Intern
  * Function Calls
  * ========================================================================= */
 
-enterEmployee();
+appStart()
 
 /* =========================================================================
  * Exports
