@@ -1,4 +1,4 @@
-# README_generator  
+# Team Profile Page Generator  
 
   
 
@@ -7,23 +7,23 @@
 
   
 
-  A command line application used to generate a professional README file.  
+  A command line application that can write and style a page for your engineering team.  
 
   * Motivation  
 
-    Every developer needs a readme with any project they build. I wanted to make a tool that would streamline the process of making one.  
+    To challenge myself to generate dynamic HTML files form a command line application.  
 
   * Reason for Building  
 
-    To not only have access to the tool itself, but to write my first full-fledged command line program.  
+    I wanted a tool that could display user information in a useful and responsive layout.  
 
   * Problems Solved  
 
-    It walks developers through the otherwise mundane process of making their readme files.  
+    Having to style and code a page for a dev team.  
 
   * Things Learned  
 
-    I learned how to modularize javascript files to work together for one greater function.  
+    I learned about using various arrays in the inquirer npm to generate a "main menu" and sub menus in a command line aplication. I learned how to write both HTML and CSS files in node. And I learned how to write and impliment jest tests for making the JS modules bulletproof.  
 
   
 
@@ -49,7 +49,7 @@
 
   
 
-  This application is meant to be run in a unix command line such as "terminal" for Mac OS and Linux users or "gitbash" for Window users.  
+  Navigate to the directory in a command line and enter the followign command :  
 
   
 
@@ -61,13 +61,9 @@
 
   
 
-  Simply run the above command line input and respond to each prompt to the best of your ability.
+  Once the application is running, use arrow keys to select what you want to do. You can start bulding the team, change the page appearance, and finally, generate a page. Start the new project by adding a team manager, then add as many or as few other team members as you like. Select a dark or light mode, and an accent color.  
 
-  You can also watch this [Video Walkthrough](https://drive.google.com/file/d/145gF7vAXcNt8LeeHQOJCevKTdwZ2MVxV/view)
-
-  ![ScreenshotOne](./assets/terminal_prompt.png)
-  ![ScreenshotTwo](./assets/rawData-MD.png)
-  ![ScreenshotThree](./assets/formatted-MD.png)
+  
 
   ## License  
 
@@ -81,7 +77,7 @@
 
   
 
-  Jung, Georgia Tech, 2U Education, GitHub, and my wife.  
+  2U Education , Georgia Tech, Jung, my wife  
 
   
 
@@ -89,7 +85,7 @@
 
   
 
-  This application can be tested by just trying different keystrokes in response to each prompt to get a feel for how the application will format the data in the output markdown file.  
+  install the jest npm and run "npm test"  
 
   
 
