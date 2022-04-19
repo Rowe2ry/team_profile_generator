@@ -49,7 +49,7 @@
 
   
 
-  Navigate to the directory in a command line and enter the followign command :  
+  Navigate to the directory in a command line and enter the following command :  
 
   
 
@@ -59,10 +59,16 @@
 
   ## Usage  
 
-  
+  [Video Demo/Walkthrough](https://drive.google.com/file/d/1ioTmxm6yMS4mar0iMBF8-RSHj7R87CRw/view)
 
   Once the application is running, use arrow keys to select what you want to do. You can start bulding the team, change the page appearance, and finally, generate a page. Start the new project by adding a team manager, then add as many or as few other team members as you like. Select a dark or light mode, and an accent color.  
 
+  ### Command Line Screenshot
+  ![Command Line Screenshot](./README_assets/node_screenshot.png)
+  ### Sample of output for dark mode with red accent color.
+  ![Sample Dark Mode Output](./README_assets/output_screenshot.png)
+  ### Sample of output for light mode with green accent color.
+  ![Sample Light Mode Output](./README_assets/light_mode.png)
   
 
   ## License  
@@ -85,7 +91,9 @@
 
   
 
-  install the jest npm and run "npm test"  
+  install the jest npm and run 
+  
+  > npm test
 
   
 
